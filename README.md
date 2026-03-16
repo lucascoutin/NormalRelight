@@ -1,2 +1,1 @@
-# NormalRelight
-Simple matte from a normal map.
+Generates a simple matte from a normal map that emulates a directional light.
