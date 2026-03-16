@@ -1,0 +1,67 @@
+Group {
+ name NormalRelight
+ tile_color 0x444444ff
+ addUserKnob {20 User l Relight}
+ addUserKnob {26 _1 l "" +STARTLINE T <b>Angle}
+ addUserKnob {7 elevation l Elevation R -90 90}
+ elevation 45
+ addUserKnob {7 rotation l Rotation R -180 180}
+ rotation 60
+ addUserKnob {26 ""}
+ addUserKnob {26 _2 l "" +STARTLINE T "Use a Y-up normal pass for accurate result."}
+ addUserKnob {20 _3 l Info}
+ addUserKnob {26 _4 l "" +STARTLINE T "Generates a simple matte from a normal map that emulates a directional light."}
+ addUserKnob {26 ""}
+ addUserKnob {26 _5 l "" +STARTLINE T "Created by <b><a href=\"https://vimeo.com/lucascoutinho\">Lucas L. Coutinho</a></b>"}
+ addUserKnob {26 _6 l "" +STARTLINE T "Version: <b>v01"}
+ addUserKnob {26 _7 l "" +STARTLINE T "Year: 2025"}
+}
+ Input {
+  inputs 0
+  name Normal
+  xpos -336
+  ypos -258
+ }
+ ColorMatrix {
+  matrix {
+   
+       {{parent.Axis1.world_matrix.2} {parent.Axis1.world_matrix.6} {parent.Axis1.world_matrix.10}}
+       {0 0 0}
+       {0 0 0}
+  }
+  name ColorMatrix1
+  xpos -336
+  ypos -163
+ }
+ Shuffle2 {
+  fromInput1 {
+   {0}
+   B
+  }
+  fromInput2 {
+   {0}
+   B
+  }
+  mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.red 0 0 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+  name Shuffle1
+  xpos -336
+  ypos -121
+ }
+ Clamp {
+  name Clamp1
+  xpos -336
+  ypos -79
+ }
+ Output {
+  name Output1
+  xpos -336
+  ypos 27
+ }
+ Axis3 {
+  inputs 0
+  rotate {{-elevation} {rotation} 0}
+  name Axis1
+  xpos -218
+  ypos -141
+ }
+end_group
